@@ -41,3 +41,4 @@ Run the script
 ```bash
 sudo python3 main.py
 ```
+![Image 1](https://github.com/Piyush800x/AutomaticSubsonicInstaller/blob/main/img/subsonic_1.PNG)
