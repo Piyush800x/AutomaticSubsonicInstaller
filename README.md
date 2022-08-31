@@ -76,4 +76,7 @@ sudo python3 main.py
 ```
 Now select option 2
 Enter your favourite spotify playlist url, then the path that you copied and press enter you will see the downloading process.When the downloading finished go back to the browser. Click `scan media folders now` inside settings menu.
+####
+![Image 1](https://github.com/Piyush800x/AutomaticSubsonicInstaller/blob/main/img/subsonic_8.PNG)
+####
 Go to index menu and you can find all your musics.
