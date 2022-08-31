@@ -28,27 +28,15 @@ Or
 
 
 ### 4th step
-Run the following commands
-```bash
-sudo ufw allow 4040/tcp
-```
-```bash
-sudo ufw allow 4040/udp
-```
-```bash
-sudo ufw reload
-```
-
-### 5th step
 Download the script
 ```bash
 wget https://raw.githubusercontent.com/Piyush800x/AutomaticSubsonicInstaller/main/main.py
 ```
 
-### 6th step (Most Important)
+### 5th step (Most Important)
 I don't know which vps provider you are using, but `you must have inbound traffic to port 4040 enabled`, otherwise soubsonic will not work.
 
-### 7th step (Final)
+### 6th step (Final)
 Run the script
 ```bash
 sudo python3 main.py
