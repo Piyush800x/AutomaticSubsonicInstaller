@@ -15,6 +15,7 @@ def get_subsonic():
     os.system("sudo apt install ffmpeg -y")
     os.system("wget https://s3-eu-west-1.amazonaws.com/subsonic-public/download/subsonic-6.1.6.deb")
     os.system("sudo dpkg -i subsonic-6.1.6.deb")
+    os.system("pip3 install spotipy --upgrade")
 
 
 def create_user(username):
