@@ -2,7 +2,7 @@ import os
 from subprocess import getoutput
 
 path = []
-# sudo apt install ffmpeg
+# Installing all the base packages for subsonic
 def get_subsonic():
     print("Updating Repositories")
     os.system("sudo apt-get update -y")
@@ -17,13 +17,13 @@ def get_subsonic():
     os.system("sudo dpkg -i subsonic-6.1.6.deb")
     os.system("pip3 install spotipy --upgrade")
 
-
+# Creating a non root user
 def create_user(username):
     os.system(f"sudo useradd --system {username}")
     os.system(f"sudo gpasswd -a subsonic {username}")
     os.system(f"sudo sed -i 's/SUBSONIC_USER=root/SUBSONIC_USER={username}/g' /etc/default/subsonic")
 
-
+# Setting up a music folder
 def music_folder(name):
     os.system(f"sudo mkdir {name}")
     os.system(f"sudo chmod +x {name}")
@@ -31,6 +31,7 @@ def music_folder(name):
     music_path = str(pwd) + f"/{name}"
     path.append(music_path)
 
+# To download spotify musics
 def spotdl():
     path = input("Enter path for downloading music: ")
     url = input("Enter spotify playlist url: ")
@@ -44,6 +45,7 @@ def spotdl():
         print("Error downloading music\nRepeat your download process again!")
         return spotdl()
 
+# Allows subsonic through firewall
 def firewall():
     os.system("sudo ufw allow 4040/tcp")
     os.system("sudo ufw allow 4040/udp")
