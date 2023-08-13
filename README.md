@@ -74,6 +74,8 @@ Run the script again
 ```bash
 sudo python3 main.py
 ```
+
+## UPDATE: music downloader is not working, It will be fixed soon :-)
 Now select option 2
 Enter your favourite spotify playlist url, then the path that you copied and press enter you will see the downloading process.When the downloading finished go back to the browser. Click `scan media folders now` inside settings menu.
 ####
