@@ -9,7 +9,7 @@ def get_subsonic():
     os.system("sudo apt-get install wget -y")
     os.system("sudo apt install python3-pip -y")
     os.system("sudo apt-get install openjdk-8-jre -y")
-    os.system("pip3 install spotdl")
+    os.system("pip3 install spotdl --upgrade")
     os.system("sudo apt-get install figlet -y")
     os.system("pip3 install --upgrade requests")
     os.system("sudo apt install ffmpeg -y")
