@@ -2,6 +2,7 @@ import os
 from subprocess import getoutput
 
 path = []
+abs_path = os.path.expanduser('~')
 # Installing all the base packages for subsonic
 def get_subsonic():
     print("Updating Repositories")
@@ -25,28 +26,37 @@ def create_user(username):
 
 # Setting up a music folder
 def music_folder(name):
-    os.system(f"sudo mkdir {name}")
-    os.system(f"sudo chmod +x {name}")
-    pwd = getoutput("pwd")
-    music_path = str(pwd) + f"/{name}"
-    path.append(music_path)
+    # os.system(f"sudo mkdir {name}")
+    # os.system(f"sudo chmod +x {name}")
+    # pwd = getoutput("pwd")
+    # music_path = str(pwd) + f"/{name}"
+    # path.append(music_path)
+    global music_dir
+    music_dir = os.path.join(abs_path, f"{name}")
+    os.mkdir(music_dir)
+
+
 
 # To download spotify musics
 def spotdl():
-    path = input("Enter path for downloading music: ")
+    # path = input("Enter path for downloading music: ")
     url = input("Enter spotify playlist url: ")
     try:
-        if url == "" or path == "":
+        if url == "":
             print("Url can't be empty\nTry again")
             return spotdl()
         else:
-            os.system(f"spotdl {url} -o {path}")
+            os.chdir(music_dir)
+            os.system(f"spotdl {url}")
     except Exception as e:
         print("Error downloading music\nRepeat your download process again!")
         return spotdl()
 
 # Allows subsonic through firewall
 def firewall():
+    os.system("sudo iptables -I INPUT -p tcp --dport 80 -j ACCEPT")
+    os.system("sudo iptables -I INPUT -p tcp --dport 4040 -j ACCEPT")
+    os.system("sudo iptables-save")
     os.system("sudo ufw allow 4040/tcp")
     os.system("sudo ufw allow 4040/udp")
     os.system("sudo ufw reload")
@@ -68,13 +78,14 @@ def main():
             print("A username can't contain numbers\nTry again")
             return main()
         else:
+            global music_dir
             get_subsonic()
             create_user(username)
             music_folder(name)
             firewall()
             print("--------------COPY THIS PATH---------------")
             print("OPEN <your-public-ip>:4040 ON YOUR BROWSER")
-            print(path[0])
+            print(music_dir)
             print("-------------------------------------------")
     elif answer == "2":
         spotdl()
@@ -82,4 +93,5 @@ def main():
 
 if __name__ == "__main__":
     os.system("sudo apt-get install figlet -y")
+    os.system("figlet AUTOMATIC SUBSONIC INSTALLER")
     main()
