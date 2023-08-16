@@ -48,6 +48,8 @@ def spotdl():
         else:
             os.chdir(music_dir)
             os.system(f"spotdl {url}")
+            print("-----------------DOWNLOAD COMEPLETE-----------------")
+            os.chdir(abs_path)
     except Exception as e:
         print("Error downloading music\nRepeat your download process again!")
         return spotdl()
