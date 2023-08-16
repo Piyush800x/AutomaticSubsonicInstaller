@@ -41,15 +41,24 @@ def music_folder(name):
 def spotdl():
     path = input("Enter path for downloading music: ")
     url = input("Enter spotify playlist url: ")
+    inp_cokie = input("Do you have Youtube Music cookies file (Y/N) : ")
+    if inp_cokie.upper() == "Y":
+        cookie_path = input("Enter cookie file path: ")
     try:
         if url == "":
             print("Url can't be empty\nTry again")
             return spotdl()
         else:
-            os.chdir(path)
-            os.system(f"spotdl {url}")
-            print("-----------------DOWNLOAD COMEPLETE-----------------")
-            os.chdir(abs_path)
+            if inp_cokie.upper() == "Y":
+                os.chdir(path)
+                os.system(f"spotdl {url} --cookie-file {cookie_path}")
+                print("-----------------DOWNLOAD COMEPLETE-----------------")
+                os.chdir(abs_path)
+            else:
+                os.chdir(path)
+                os.system(f"spotdl {url}")
+                print("-----------------DOWNLOAD COMEPLETE-----------------")
+                os.chdir(abs_path)
     except Exception as e:
         print("Error downloading music\nRepeat your download process again!")
         return spotdl()
