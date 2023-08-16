@@ -39,14 +39,14 @@ def music_folder(name):
 
 # To download spotify musics
 def spotdl():
-    # path = input("Enter path for downloading music: ")
+    path = input("Enter path for downloading music: ")
     url = input("Enter spotify playlist url: ")
     try:
         if url == "":
             print("Url can't be empty\nTry again")
             return spotdl()
         else:
-            os.chdir(music_dir)
+            os.chdir(path)
             os.system(f"spotdl {url}")
             print("-----------------DOWNLOAD COMEPLETE-----------------")
             os.chdir(abs_path)
